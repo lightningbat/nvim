@@ -4,7 +4,6 @@ return {
 		event = { "BufReadPre", "BufNewFile" }, -- lazy-load on buffer open
 
 		config = function()
-			local lspconfig = require('lspconfig')
 			local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 			local on_attach = function(_, bufnr)
@@ -21,63 +20,75 @@ return {
 			end
 
 			-- PYTHON
-			lspconfig.pyright.setup({
+			vim.lsp.config('pyright', {
 				on_attach = on_attach,
 				capabilities = cmp_capabilities,
 			})
 
 			-- GO
-			lspconfig.gopls.setup({
+			vim.lsp.config('gopls', {
 				on_attach = on_attach,
 				capabilities = cmp_capabilities,
 			})
 
 			-- LUA
-			lspconfig.lua_ls.setup({
+			vim.lsp.config('lua_ls', {
 				on_attach = on_attach,
 				capabilities = cmp_capabilities,
 			})
 
 			-- JS / TS / JSX / TSX
-			lspconfig.ts_ls.setup({
+			vim.lsp.config('ts_ls', {
 				filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
 				on_attach = on_attach,
 				capabilities = cmp_capabilities,
 			})
 
 			-- HTML
-			lspconfig.html.setup({
+			vim.lsp.config('html', {
 				on_attach = on_attach,
 				capabilities = cmp_capabilities,
 			})
 
 			-- STYLESHEET
-			lspconfig.cssls.setup({
+			vim.lsp.config('cssls', {
 				on_attach = on_attach,
 				capabilities = cmp_capabilities,
 			})
 
 			-- JSON
-			lspconfig.jsonls.setup({
+			vim.lsp.config('jsonls', {
 				on_attach = on_attach,
 				capabilities = cmp_capabilities,
 			})
 
 			-- MARKDOWN
-			lspconfig.marksman.setup({
+			vim.lsp.config('marksman', {
 				cmd = { vim.fn.expand("~/.local/bin/marksman-linux-x64") },
 				on_attach = on_attach,
 				capabilities = cmp_capabilities,
 			})
 
 			-- ESLINT
-			lspconfig.eslint.setup({
+			vim.lsp.config('eslint', {
 				on_attach = on_attach,
 				capabilities = cmp_capabilities,
 			})
 
 			-- HTML EMMET
-			lspconfig.emmet_language_server.setup({})
+			vim.lsp.config('emmet_language_server', {})
+
+			vim.lsp.enable({
+				'pyright',
+				'gopls',
+				'ts_ls',
+				'html',
+				'cssls',
+				'jsonls',
+				'marksman',
+				'eslint',
+				'emmet_language_server',
+			})
 		end,
 	},
 }
