@@ -78,17 +78,7 @@ return {
 			-- HTML EMMET
 			vim.lsp.config('emmet_language_server', {})
 
-			vim.lsp.enable({
-				'pyright',
-				'gopls',
-				'ts_ls',
-				'html',
-				'cssls',
-				'jsonls',
-				'marksman',
-				'eslint',
-				'emmet_language_server',
-			})
+			-- vim.lsp.enable moved to autocmds.lua
 		end,
 	},
 }

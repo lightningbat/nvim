@@ -27,3 +27,25 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 		end
 	end,
 })
+
+-- NOTE: Neovim 0.11.x has a startup ordering issue where calling
+-- vim.lsp.enable() too early can break Tree-sitter/syntax highlighting
+-- for the initial buffer. Delaying LSP enable until VimEnter avoids
+-- this race. Remove once upstream fixes the issue.
+vim.api.nvim_create_autocmd("VimEnter", {
+  once = true,
+  callback = function()
+    vim.lsp.enable({
+		"pyright",
+		"gopls",
+		"lua_ls",
+		"ts_ls",
+		"html",
+		"cssls",
+		"jsonls",
+		"marksman",
+		"eslint",
+		"emmet_language_server",
+	})
+  end,
+})
