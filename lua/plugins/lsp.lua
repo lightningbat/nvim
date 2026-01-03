@@ -23,7 +23,21 @@ return {
 			vim.lsp.config('pyright', {
 				on_attach = on_attach,
 				capabilities = cmp_capabilities,
+				settings = {
+					pyright = {
+						-- Using Ruff's import organizer
+						disableOrganizeImports = true,
+					},
+					python = {
+						analysis = {
+							-- Ignore all files for analysis to exclusively use Ruff for linting
+							ignore = { '*' },
+						},
+					},
+				},
 			})
+
+			vim.lsp.config('ruff', { })
 
 			-- GO
 			vim.lsp.config('gopls', {
