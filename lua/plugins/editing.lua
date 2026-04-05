@@ -6,7 +6,7 @@ return {
 			require("nvim-autopairs").setup({})
 		end,
 	},
-	{ -- Surround (wrapper)
+	{                 -- Surround (wrapper)
 		"kylechui/nvim-surround",
 		version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
 		event = "VeryLazy",
@@ -24,6 +24,14 @@ return {
 	},
 	{ -- Comment toggle
 		'numToStr/Comment.nvim',
+		dependencies = {
+			"JoosepAlviste/nvim-ts-context-commentstring"
+		},
+		config = function()
+			require("Comment").setup({
+				pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+			})
+		end
 	},
 	{ -- Bracket pair highlighter
 		"andymass/vim-matchup",
