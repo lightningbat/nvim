@@ -23,6 +23,13 @@ map('v', 'd', '"_d', { desc = "Delete without yanking" })
 map("v", ">", ">gv", { desc = "Indent selected lines" })
 map("v", "<", "<gv", { desc = "Un-indent selected lines" })
 
+map("n", "<leader>d", function()
+	vim.diagnostic.open_float(nil, {
+		focusable = true,
+		scope = "cursor",
+	})
+end, { desc = "Focus diagnostic float" })
+
 -- Jump to window using leder + window_index
 for i = 1, 9 do
     map("n", vim.g.mapleader .. tostring(i), function()
